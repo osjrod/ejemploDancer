@@ -69,7 +69,7 @@ get '/' => sub {
  
 post '/add' => sub {
        if ( not session('logged_in') ) {
-               send_error("Not logged in", 401);
+               send_error("No se ha iniciado sesion", 401);
        }
  
        my $db = connect_db();
@@ -77,7 +77,7 @@ post '/add' => sub {
        my $sth = $db->prepare($sql) or die $db->errstr;
        $sth->execute(params->{'title'}, params->{'text'}) or die $sth->errstr;
  
-       set_flash('New entry posted!');
+       set_flash('Nueva entrada posteada!');
        redirect '/';
 };
  
@@ -87,14 +87,14 @@ any ['get', 'post'] => '/login' => sub {
        if ( request->method() eq "POST" ) {
                # process form input
                if ( params->{'username'} ne setting('username') ) {
-                       $err = "Invalid username";
+                       $err = "Usuario Invalido";
                }
                elsif ( params->{'password'} ne setting('password') ) {
-                       $err = "Invalid password";
+                       $err = "Contraseña invalida";
                }
                else {
                        session 'logged_in' => true;
-                       set_flash('You are logged in.');
+                       set_flash('Usted ha iniciado sesion.');
                        return redirect '/';
                }
        }
@@ -108,7 +108,7 @@ any ['get', 'post'] => '/login' => sub {
  
 get '/logout' => sub {
        session->destroy;
-       set_flash('You are logged out.');
+       set_flash('Usted ha cerrado sesion.');
        redirect '/';
 };
  

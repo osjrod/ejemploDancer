@@ -1,20 +1,36 @@
 <% IF session.logged_in %>
   <form action="<% add_entry_url %>" method=post class=add-entry>
     <dl>
-      <dt>Title:
+      <dt>Titulo:
       <dd><input type=text size=30 name=title>
-      <dt>Text:
+      <dt>Texto:
       <dd><textarea name=text rows=5 cols=40></textarea>
-      <dd><input type=submit value=Share>
+      <dd><input type=submit value=Compartir>
     </dl>
   </form>
 <% END %>
-<ul class=entries>
+<div class="container well">
+    <div class="page-header">
+        <h1 id="timeline">Entradas</h1>
+    </div>
+    <ul class="timeline">
 <% IF entries.size %>
   <% FOREACH id IN entries.keys.nsort %>
-    <li><h2><% entries.$id.title %></h2><% entries.$id.text %>
+    <li class="timeline-badge">
+          <div class="timeline-badge info"></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h3 class="timeline-title"><% entries.$id.title %></h3>
+            </div>
+            <div class="timeline-body">
+              <p><% entries.$id.text %></p>
+            </div>
+          </div>
+        </li>
   <% END %>
 <% ELSE %>
-  <li><em>Unbelievable.  No entries here so far</em>
+  <li><em>No existen entradas disponbles para mostrar.</em>
 <% END %>
-</ul>
+    </ul>
+</div>
+

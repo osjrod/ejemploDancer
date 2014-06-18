@@ -1,23 +1,52 @@
 <!doctype html>
 <html>
 <head>
-  <title>Dancr</title>
+  <title>Ejemplo Blog Dancer</title>
   <link rel=stylesheet type=text/css href="<% css_url %>">
+
+  <link rel="stylesheet" href="<% request.uri_base %>/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="<% request.uri_base %>/css/bootstrap-theme.min.css" />
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="//code.jquery.com/bootstrap.min.js"></script>
+
 </head>
 <body>
-  <div class=page>
-  <h1>Dancr</h1>
-     <div class=metanav>
-     <% IF not session.logged_in %>
-       <a href="<% login_url %>">log in</a>
-     <% ELSE %>
-       <a href="<% logout_url %>">log out</a>
-     <% END %>
+  
+  <div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="head">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="span6">
+                    <h1 class="muted">Blog Dancer</h1>
+                </div>
+
+                <div class="span4 offset2" id="inicio">
+
+					     <% IF not session.logged_in %>
+					       <a href="<% login_url %>"><button class="btn pull-right" href="<% login_url %>" type="button">Iniciar Sesion</button></a>
+
+					     <% ELSE %>
+					       <a href="<% logout_url %>"><button class="btn pull-right" type="button">Cerrar Sesion</button></a>
+					     <% END %>
+
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
-  <% IF msg %>
-    <div class=flash> <% msg %> </div>
-  <% END %>
+</div>
+
+	<div class="container">
+  <div class=page>
+  						  <% IF msg %>
+					    <div class=flash> <% msg %> </div>
+					  <% END %>
+
   <% content %>
+
+  </div>
 </div>
 </body>
 </html>

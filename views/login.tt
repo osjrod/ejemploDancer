@@ -1,11 +1,11 @@
-<h2>Login</h2>
+<h2>Iniciar Sesion</h2>
 <% IF err %><p class=error><strong>Error:</strong> <% err %><% END %>
 <form action="<% login_url %>" method=post>
   <dl>
-    <dt>Username:
+    <dt>Usuario:
     <dd><input type=text name=username>
-    <dt>Password:
+    <dt>Contraseña:
     <dd><input type=password name=password>
-    <dd><input type=submit value=Login>
+    <dd><input type=submit value=Iniciar sesion
   </dl>
 </form>
